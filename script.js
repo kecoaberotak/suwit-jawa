@@ -1,51 +1,72 @@
-var tanya = true;
+const hasil = document.querySelector('.info');
+const gajah = document.querySelector('.gajah');
+const semut = document.querySelector('.semut');
+const orang = document.querySelector('.orang');
+let com;
+let player;
 
-do {
-  // menangkap pilihan user
-  var player = prompt('Gajah / Semut / Orang?').toLocaleLowerCase();
 
-  // generate bilangan random
-  var com = Math.random() * 10;
-  console.log(com);
+
+// menangkap pilihan user
+gajah.addEventListener('click', function(){
+  player = 'gajah';
+  computerPilih();
+  console.log('computer: ',com);
+  rules(player, com);
+});
+
+semut.addEventListener('click', function(){
+  player = 'semut';
+  computerPilih();
+  console.log('computer: ',com);
+  rules(player, com);
+});
+
+orang.addEventListener('click', function(){
+  player = 'orang';
+  computerPilih();
+  console.log('computer: ',com);
+  rules(player, com);
+});
+
+
+// generate bilangan random
+function computerPilih (){
+  com = Math.random() * 10;
 
   if (com <= 3){
     com = 'gajah';
   } else if (com <= 6){
     com = 'semut';
   } else com = 'orang';
+}
 
-  console.log(com);
 
-  // rules
+// rules
+function rules(player, com){
   switch (player) {
     case 'gajah':
       if(com == 'gajah'){
-        alert('SERI! \nPlayer : ' + player + '\nComputer : ' + com);
+        hasil.innerHTML= '<p>SERI!</p>';
       } else if (com == 'semut'){
-        alert('KALAH! \nPlayer : ' + player + '\nComputer : ' + com);
-      } else alert('MENANG! \nPlayer : ' + player + '\nComputer : ' + com);
+        hasil.innerHTML= '<p>KALAH!</p>';
+      } else hasil.innerHTML= '<p>MENANG!</p>';
     break;
-
+  
     case 'semut' :
       if(com == 'gajah'){
-        alert('MENANG! \nPlayer : ' + player + '\nComputer : ' + com);
+        hasil.innerHTML= '<p>MENANG!</p>';
       } else if (com == 'semut'){
-        alert('SERI! \nPlayer : ' + player + '\nComputer : ' + com);
-      } else alert('KALAH! \nPlayer : ' + player + '\nComputer : ' + com);
+        hasil.innerHTML= '<p>SERI!</p>';
+      } else hasil.innerHTML= '<p>KALAH!</p>';
     break;
-
+  
     case 'orang' :
       if(com == 'gajah'){
-        alert('KALAH! \nPlayer : ' + player + '\nComputer : ' + com);
+        hasil.innerHTML= '<p>KALAH!</p>';
       } else if (com == 'semut'){
-        alert('MENANG! \nPlayer : ' + player + '\nComputer : ' + com);
-      } else alert('SERI! \nPlayer : ' + player + '\nComputer : ' + com);
+        hasil.innerHTML= '<p>MENANG!</p>';
+      } else hasil.innerHTML= '<p>SERI!</p>';
     break;
-
-    default :
-      alert('HANYA BOLEH MEMILIH GAJAH / SEMUT / ORANG !!!!');
-      break;
   }
-
-  tanya = confirm('Mau bermain lagi?')
-} while (tanya == true);
+};
